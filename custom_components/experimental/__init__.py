@@ -1,0 +1,1 @@
+"""Experimental integration for Home Assistant."""
