@@ -50,7 +50,7 @@ jobs:
 
       - name: ZIP the integration directory
         run: |
-          cd custom_components/${{ env.INTEGRATION_NAME }}
+          cd custom_components
           zip -r ../../${{ env.INTEGRATION_NAME }}.zip ./
 
       - name: Create GitHub Release and Upload Asset
