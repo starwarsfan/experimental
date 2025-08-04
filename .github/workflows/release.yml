@@ -7,14 +7,17 @@ on:
 
 permissions: {}
 
+env:
+  INTEGRATION_NAME: experimental
+
 jobs:
   release:
-    name: "Release"
-    runs-on: "ubuntu-latest"
+    name: Release
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: "Checkout the repository"
+      - name: Checkout the repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -47,8 +50,8 @@ jobs:
 
       - name: ZIP the integration directory
         run: |
-          cd custom_components/experimental
-          zip -r ../../experimental.zip ./
+          cd custom_components/${{ env.INTEGRATION_NAME }}
+          zip -r ../../${{ env.INTEGRATION_NAME }}.zip ./
 
       - name: Create GitHub Release and Upload Asset
         uses: softprops/action-gh-release@v2
@@ -56,6 +59,6 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
           body_path: release_notes.txt
-          files: experimental.zip
+          files: ${{ env.INTEGRATION_NAME }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
