@@ -47,7 +47,7 @@ jobs:
 
       - name: ZIP the integration directory
         run: |
-          cd custom_integration/experimental
+          cd custom_components/experimental
           zip -r ../../experimental.zip ./
 
       - name: Create GitHub Release
