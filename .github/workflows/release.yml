@@ -48,10 +48,15 @@ jobs:
               out.write('\n'.join(notes).strip())
           EOF
 
+      - name: Set version and hash variables
+        run: |
+          echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "GITHASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
       - name: ZIP the integration directory
         run: |
           cd custom_components
-          zip -r ../${{ env.INTEGRATION_NAME }}.zip ./
+          zip -r ../${{ env.INTEGRATION_NAME }}-${{ env.VERSION }}-${{ env.GITHASH }}.zip ./
 
       - name: Create GitHub Release and Upload Asset
         uses: softprops/action-gh-release@v2
