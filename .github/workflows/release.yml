@@ -51,7 +51,7 @@ jobs:
       - name: ZIP the integration directory
         run: |
           cd custom_components
-          zip -r ../../${{ env.INTEGRATION_NAME }}.zip ./
+          zip -r ../${{ env.INTEGRATION_NAME }}.zip ./
 
       - name: Create GitHub Release and Upload Asset
         uses: softprops/action-gh-release@v2
