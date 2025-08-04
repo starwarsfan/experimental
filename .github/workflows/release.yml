@@ -64,6 +64,6 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
           body_path: release_notes.txt
-          files: ${{ env.INTEGRATION_NAME }}.zip
+          files: ${{ env.INTEGRATION_NAME }}-${{ env.VERSION }}-${{ env.GITHASH }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
